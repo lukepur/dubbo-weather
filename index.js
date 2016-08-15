@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 var fs = require('fs');
 var path = require('path');
 
@@ -8,6 +10,8 @@ var app = express();
 
 var compress = require('compression');
 var layouts = require('express-ejs-layouts');
+
+var weatherApi = require('./server/api/weather');
 
 app.set('layout');
 app.set('view engine', 'ejs');
@@ -29,6 +33,9 @@ if (env.production) {
     assets: JSON.parse(fs.readFileSync(path.join(process.cwd(), 'assets.json')))
   });
 }
+
+app.get('/api/weather', weatherApi.weather);
+app.get('/api/weather/day', weatherApi.weatherByDay);
 
 app.get('/*', function(req, res) {
   res.render('index', {
