@@ -1,26 +1,19 @@
-jest.dontMock('./Index.jsx');
+jest.dontMock('./app.jsx');
+jest.dontMock('../weather/weather.jsx');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-var Index = require('./Index.jsx').default;
+var App = require('./App.jsx').default;
 
-describe('IndexComponent', () => {
+describe('App component', () => {
 
   it('should render', () => {
-    var items = [1, 2];
 
-    var componentInstance = TestUtils.renderIntoDocument(<Index items={items} />);
-    var indexItems = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'li');
+    var componentInstance = TestUtils.renderIntoDocument(<App/>);
+    var node = ReactDOM.findDOMNode(componentInstance);
 
-    expect(indexItems.length).toEqual(items.length);
+    expect(node.textContent).toContain('Dubbo');
   });
-
-  it('should render empty list', () => {
-    var componentInstance = TestUtils.renderIntoDocument(<Index />);
-
-    expect(componentInstance.refs.empty.textContent).toEqual('Index is empty.');
-  });
-
 });

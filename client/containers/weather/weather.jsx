@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import DayChanger from '../../components/day-changer/day-changer';
-import WeatherCard from '../../components/weather-card/weather-card';
-import WeatherPill from '../../components/weather-pill/weather-pill';
+import DayChanger from '../../components/day-changer/day-changer.jsx';
+import WeatherCard from '../../components/weather-card/weather-card.jsx';
+import WeatherPill from '../../components/weather-pill/weather-pill.jsx';
 
 class Weather extends Component {
   constructor(props) {
@@ -42,25 +42,14 @@ class Weather extends Component {
   }
 
   selectNextDay() {
-    const data = this.props.weatherData;
-    let selectedDay;
-    if (data.length === 0) {
-      selectedDay = 0;
-    } else {
-      selectedDay = this.state.selectedDay === data.length - 1 ? 0 : this.state.selectedDay + 1;
-    }
-    this.setState({selectedDay});
+    const length = this.props.weatherData.length;
+    this.setState({selectedDay: (this.state.selectedDay + 1) % length});
   }
 
   selectPreviousDay() {
-    const data = this.props.weatherData;
-    let selectedDay;
-    if (data.length === 0) {
-      selectedDay = 0;
-    } else {
-      selectedDay = this.state.selectedDay === 0 ? data.length - 1 : this.state.selectedDay - 1;
-    }
-    this.setState({selectedDay});
+    const upper = this.props.weatherData.length-1;
+    const updatedDay = this.state.selectedDay - 1;
+    this.setState({selectedDay: updatedDay < 0 ? upper : updatedDay});
   }
 
   setSelected(index) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { WEATHER_ENDPOINT } from './constants';
-import WeatherContainer from '../weather/weather';
+import { WEATHER_ENDPOINT, LOCATION_URL } from './constants.js';
+import WeatherContainer from '../weather/weather.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends Component {
         <div className="columns">
           <main className="column col-12 app">
             <h1 className="app-title">Dubbo 
-              <sup><a href="https://www.google.co.uk/maps/place/Dubbo+NSW+2830,+Australia/@-32.9381294,140.3825626,5.47z/data=!4m5!3m4!1s0x6b0f71b04ca4913b:0x50609b490442530!8m2!3d-32.2315018!4d148.6329645"
+              <sup><a href={LOCATION_URL}
                  target="_blank" className="btn btn-link btn-sm">(where?)</a></sup></h1>
             <h2>5-Day Weather <button className="btn btn-sm" onClick={this.fetch}>Refresh</button></h2>
             <WeatherContainer {...this.state} />

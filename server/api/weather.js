@@ -5,7 +5,8 @@ var moment = require('moment');
 var WEATHER_API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/forecast';
 var API_KEY = process.env.API_KEY;
 var DEFAULT_PARAMS = {
-  id: '2168305',
+  id: '2168305', // Dubbo, Au stopped working halfway through testing for some reason!
+  // id: '2172517',
   mode: 'json',
   units: 'metric',
   APPID: API_KEY
