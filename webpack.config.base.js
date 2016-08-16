@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CopyPlugin = require('copy-webpack-plugin');
 
 var NODE_ENV = process.env.NODE_ENV;
 
@@ -45,7 +46,12 @@ module.exports = {
       __STAGING__: env.staging,
       __PRODUCTION__: env.production,
       __CURRENT_ENV__: '\'' + (NODE_ENV) + '\''
-    })
+    }),
+    new CopyPlugin([
+      {
+        from: 'node_modules/spectre.css/dist/spectre.min.css'
+      }
+    ])
   ],
 
   module: {

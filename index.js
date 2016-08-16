@@ -21,6 +21,7 @@ app.set('views', path.join(process.cwd(), '/server/views'));
 app.use(compress());
 app.use(layouts);
 app.use('/client', express.static(path.join(process.cwd(), '/client')));
+app.use('/dist', express.static(path.join(process.cwd(), '/client/dist')));
 
 app.disable('x-powered-by');
 
@@ -36,6 +37,7 @@ if (env.production) {
 
 app.get('/api/weather', weatherApi.weather);
 app.get('/api/weather/day', weatherApi.weatherByDay);
+
 
 app.get('/*', function(req, res) {
   res.render('index', {

@@ -53,7 +53,7 @@ function weatherByDay (req, res) {
       }, {weatherMap:{}}))
     })
     .map(function(day) {
-      day.weather = getWeatherMode(day.weatherMap);
+      day.description = getWeatherMode(day.weatherMap);
       return day;
     })
     .value();

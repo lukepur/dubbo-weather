@@ -7,4 +7,4 @@ import { render } from 'react-dom';
 
 import App from 'containers/app/app';
 
-render(<App items={[1,2,3]} />, document.getElementById('js-main'));
+render(<App />, document.getElementById('js-main'));
